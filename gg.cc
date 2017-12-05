@@ -282,7 +282,4 @@ void gg::vermenigvuldig( gg A, gg B, gg& C ) {
       maakNullenTeller++;
       hulpB = hulpB->vorige;
    }
-
-   //verwijderen ( );
 }
-
