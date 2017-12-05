@@ -1,4 +1,5 @@
-struct element {
+class element {
+  public:
     element* vorige;
     element* volgende;
     int info;
@@ -26,7 +27,7 @@ class gg {
  	   void hevelen ( );
  	   void maakNullen ( int m );
  	   void maakeen ( );
- 	   void kopieer ( gg B );
+ 	   void kopieer ( gg& A, gg B );
        int verschuiving;
  	    int k;
  	    int aantalBoten;
