@@ -80,6 +80,7 @@ int main ( ) {
             A.verwijderen( );
             B.verwijderen( );
             C.verwijderen( );
+
             break;
          case 'P': case 'p':
 		      A.print( );
@@ -92,6 +93,7 @@ int main ( ) {
 		      break;
          case 'V': case 'v':
 		      C.vermenigvuldig( A, B, C );
+
 		      break;
          case 'T': case 't':
 		      C.telop( A, B );
