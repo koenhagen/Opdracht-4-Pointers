@@ -24,6 +24,22 @@ void leesOptie ( char& keuze, char& buffer ) {
    }
 }
 
+// door de gebruiker gegeven getal inlezen tot maximaal 1000
+// enters en niet-getallen negeren
+int leesGetal ( ) {
+ 	char vorigeKeuze = '\n';
+ 	char keuze = '\n';
+ 	int getal = 0;
+   while ( vorigeKeuze == '\n' || keuze != '\n' ) {
+      vorigeKeuze = keuze;
+      cin.get ( keuze );
+      if ( keuze >= '0' && keuze <= '9' && getal <= 100 ) {
+         getal = ( getal * 10 ) + ( keuze - '0' );
+      } // if
+   } // while
+   return getal;
+} // leesGetal
+
 int main ( ) {
    gg A;
    gg B;
@@ -57,28 +73,28 @@ int main ( ) {
 		      menuAan = false;
             break;
          case 'L': case 'l':
-		      A.leesGetal ( );
-		      B.leesGetal ( );
+		      A.leesGetal( );
+		      B.leesGetal( );
             break;
          case 'D': case 'd':
-            A.verwijderen ( );
-            B.verwijderen ( );
-            C.verwijderen ( );
+            A.verwijderen( );
+            B.verwijderen( );
+            C.verwijderen( );
             break;
          case 'P': case 'p':
-		      A.print ( );
-		      B.print ( );
-		      C.print ( );
+		      A.print( );
+		      B.print( );
+		      C.print( );
             break;
          case 'F': case 'f':
-		      C.fibonacci ( 1000, C );
-		      C.print ( );
+		      C.fibonacci( leesGetal( ), C );
+		      C.print( );
 		      break;
          case 'V': case 'v':
-		      C.vermenigvuldig ( A, B, C );
+		      C.vermenigvuldig( A, B, C );
 		      break;
          case 'T': case 't':
-		      C.telop ( A, B );
+		      C.telop( A, B );
             break;
 	      default:
 	         cout << "Geen geldige optie" << endl;
