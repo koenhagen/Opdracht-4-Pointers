@@ -218,19 +218,19 @@ void gg::fibonacci( int n, gg& A ) {
    eerste.maakeen( );
    maakeen( );
    for ( int teller = 3; teller <= n; teller++ ) {
-      kopieer( hulp, A );
+      hulp.kopieer( A );
       telop( eerste, hulp );
-      kopieer( eerste, hulp );
+      eerste.kopieer( hulp );
    }
    eerste.verwijderen( );
    hulp.verwijderen( );
 }
 
-void gg::kopieer( gg& A, gg B ) {
-   A.verwijderen( );
+void gg::kopieer( gg B ) {
+   verwijderen( );
    element* hulp = B.ingang;
    while ( hulp != NULL ) {
-      A.voegAchter( hulp->info );
+      voegAchter( hulp->info );
       hulp = hulp->volgende;
    }
 }
@@ -242,14 +242,14 @@ void gg::maakeen( ) {
 
 void gg::maakNullen( int m ) {
    verwijderen( );
-      for ( int teller = 0; teller < m; teller++ ) {
-         voegAchter( 0 );
-      }
+   for ( int teller = 0; teller < m; teller++ ) {
+      voegAchter( 0 );
+   }
 }
 
-int gg::getAantalBoten( ) {
-   return aantalBoten;
-}
+//int gg::getAantalBoten( ) {
+   //return aantalBoten;
+//}
 
 void gg::vermenigvuldig( gg A, gg B, gg& C ) {
    gg hulpC;
@@ -258,9 +258,9 @@ void gg::vermenigvuldig( gg A, gg B, gg& C ) {
 	int rest = 0;
 	double kMacht;
 	int maakNullenTeller = 0;
-   int limiet = B.getAantalBoten( );
+   //int limiet = B.getAantalBoten( );
    element* hulpB = B.uitgang;
-   for ( int i = 1; i <= limiet; i++ ) {
+   while ( hulpB != NULL ) {
       element* hulpA = A.uitgang;
       hulpC.maakNullen( maakNullenTeller );
       while ( hulpA != NULL ) {
@@ -277,11 +277,9 @@ void gg::vermenigvuldig( gg A, gg B, gg& C ) {
       }
       hulpC.voegVoor ( rest );
       rest = 0;
-      kopieer( temp, C );
+      temp.kopieer( C );
       telop( temp, hulpC );
       maakNullenTeller++;
       hulpB = hulpB->vorige;
    }
-
-   //verwijderen ( );
 }
