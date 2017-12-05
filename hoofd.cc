@@ -75,7 +75,7 @@ int main ( ) {
 		      C.print ( );
 		      break;
          case 'V': case 'v':
-		      C.vermenigvuldig ( A, B, C );
+		      C.vermenigvuldig ( A, B, C);
 		      break;
          case 'T': case 't':
 		      C.telop ( A, B );
