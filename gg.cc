@@ -12,7 +12,7 @@ int cijferTeller( int getal ) {
    while ( getal != 0 ) {
       getal /= 10;
       cijferTeller++;
-	} //while
+	}
    return cijferTeller;
 } //gg::cijferTeller
 
@@ -26,6 +26,8 @@ gg::gg( ) {
   delElement = 0;
   aantalBoten = 0;
 } //gg::gg
+
+//const int gg::aantalBoten = 0;
 
 // druk lijst met ingang als ingang af
 void gg::print( ) {
@@ -49,11 +51,11 @@ void gg::print( ) {
          cout << " ";
       } // if/else
       hulp = hulp->volgende;
-   } // while
+   } //while
    cout << " (" << aantalBoten << ")" << endl;
 } //gg::print
 
-// voeg een bootje voor aan de lijst.
+// voeg een bootje voor aan de lijsto.
 void gg::voegVoor(int getal) {
       element* eenVakje;
       eenVakje = new element;
@@ -64,32 +66,34 @@ void gg::voegVoor(int getal) {
       } else {
          ingang->vorige = eenVakje;
       } // if/else
+
       eenVakje->vorige = NULL;
       eenVakje->volgende = ingang;
       eenVakje->info = getal;
       ingang = eenVakje;
-      // bufferSchoonmaken( buffer );
-} // gg::voegVoor
+      //bufferSchoonmaken( buffer );
+} //gg::voegVoor
 
-// voeg een bootje achter aan de lijst.
+// voeg een bootje achter aan de lijsto.
 void gg::voegAchter( int getal ) {
       element* eenVakje;
       eenVakje = new element;
       toevElement++;
+
       if ( uitgang == NULL ) {
          ingang = eenVakje;
       } else {
          uitgang->volgende = eenVakje;
       } // if/else
+
       eenVakje->vorige = uitgang;
       eenVakje->volgende = NULL;
       eenVakje->info = getal;
       uitgang = eenVakje;
-} //gg::voegAchter
+}//gg::bouwlijst
 
-// door de gebruiker gegeven getal inlezen.
-// enters en niet-getallen negeren. 
-// Iedere k cijfers, bootje achter aan pointerlijst toevoegen.
+// door de gebruiker gegeven getal inlezen tot maximaal 1000
+// enters en niet-getallen negeren
 void gg::leesGetal( ) {
    bool nulOntwijker = false;
    char vorigeKeuze = '\n';
@@ -124,8 +128,6 @@ void gg::leesGetal( ) {
    hevelen( );
 } // gg::leesGetal
 
-// cijfers doorgeven zodat alle bootjes (behalve mogelijk de eerste) k cijfers
-// bevatten.
 void gg::hevelen( ) {
    int d;
    int r = 0;
@@ -139,6 +141,7 @@ void gg::hevelen( ) {
    	while ( hulp != NULL ) {
          bootje = hulp->info;
          d = bootje / bootVerschuiving;
+         //cout << d << endl << bootje << endl << bootVerschuiving << endl << r << endl;
          if ( hulp->volgende == NULL ) {
          	hulp->info = ( r * bootDeler ) + bootje; //
          } else {
@@ -150,7 +153,6 @@ void gg::hevelen( ) {
    } // if
 } // gg::hevelen
 
-// twee pointerlijsten optellen met elkaar en in een derde pointerlijst zetten.
 void gg::telop( gg A, gg B ) {
 	int C;
 	int hulpC = 0;
@@ -160,12 +162,18 @@ void gg::telop( gg A, gg B ) {
 	element* overig;
    verwijderen( );
 	while ( hulpA != NULL && hulpB != NULL ) {
+
 		C = hulpA->info + hulpB->info + hulpC;
+
 		kMacht = pow( 10, k );
 		hulpC = C / kMacht;
 		C = fmod( C, kMacht );
+
+
 		hulpA = hulpA->vorige;
 		hulpB = hulpB->vorige;
+
+		//cout << hulpC << endl << C << endl;
 		voegVoor( C );
 	} // while
 	if ( hulpA == NULL ) {
@@ -175,10 +183,14 @@ void gg::telop( gg A, gg B ) {
 	} // if/else
 	while ( overig != NULL ) {
 		C = overig->info + hulpC;
+
 		hulpC = pow( 10, k );
 		C = C % hulpC;
 		hulpC = C / hulpC;
+
+		//cout << hulpC << endl << C << endl;
 		voegVoor( C );
+
 		overig = overig->vorige;
 	} // while
 	if ( hulpC > 0 ) {
@@ -206,41 +218,39 @@ void gg::fibonacci( int n, gg& A ) {
    eerste.maakeen( );
    maakeen( );
    for ( int teller = 3; teller <= n; teller++ ) {
-      kopieer( hulp, A );
+      hulp.kopieer( A );
       telop( eerste, hulp );
-      kopieer( eerste, hulp );
-   } // for
+      eerste.kopieer( hulp );
+   }
    eerste.verwijderen( );
    hulp.verwijderen( );
-} // gg::fibonacci
+}
 
-void gg::kopieer( gg& A, gg B ) {
-   A.verwijderen( );
+void gg::kopieer( gg B ) {
+   verwijderen( );
    element* hulp = B.ingang;
    while ( hulp != NULL ) {
-      A.voegAchter( hulp->info );
+      voegAchter( hulp->info );
       hulp = hulp->volgende;
-   } //while
-} //gg::kopieer
+   }
+}
 
 void gg::maakeen( ) {
    verwijderen( );
    voegAchter( 1 );
-} //gg::maakeen
+}
 
 void gg::maakNullen( int m ) {
    verwijderen( );
-      for ( int teller = 0; teller < m; teller++ ) {
-         voegAchter( 0 );
-      } //for
-} //gg::maakNullen
+   for ( int teller = 0; teller < m; teller++ ) {
+      voegAchter( 0 );
+   }
+}
 
-int gg::getAantalBoten( ) {
-   return aantalBoten;
-} //gg::getAantalBoten
+//int gg::getAantalBoten( ) {
+   //return aantalBoten;
+//}
 
-// twee pointerlijsten vermenigvuldigen met elkaar en in een derde pointerlijst
-// zetten.
 void gg::vermenigvuldig( gg A, gg B, gg& C ) {
    gg hulpC;
    gg temp;
@@ -248,25 +258,31 @@ void gg::vermenigvuldig( gg A, gg B, gg& C ) {
 	int rest = 0;
 	double kMacht;
 	int maakNullenTeller = 0;
-   int limiet = B.getAantalBoten( );
+   //int limiet = B.getAantalBoten( );
    element* hulpB = B.uitgang;
-   for ( int i = 1; i <= limiet; i++ ) {
+   while ( hulpB != NULL ) {
       element* hulpA = A.uitgang;
       hulpC.maakNullen( maakNullenTeller );
       while ( hulpA != NULL ) {
          rekenC = hulpA->info * hulpB->info + rest;
+
          kMacht = pow( 10, k );
          rest = rekenC / kMacht;
          rekenC = fmod( rekenC, kMacht );
+
+         //cout << rest << endl << rekenC << endl << endl;
          hulpC.voegVoor( rekenC );
          hulpA = hulpA->vorige;
-      } //while
+
+      }
       hulpC.voegVoor ( rest );
       rest = 0;
-      kopieer( temp, C );
+      temp.kopieer( C );
       telop( temp, hulpC );
       maakNullenTeller++;
       hulpB = hulpB->vorige;
-   } //for
-} //gg::vermenigvuldig
+   }
+
+   //verwijderen ( );
+}
 
