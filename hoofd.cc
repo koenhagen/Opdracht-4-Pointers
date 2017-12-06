@@ -46,9 +46,10 @@ int main ( ) {
    gg X[3];
    char invoer;
    char buffer;
+   char antwoord;
+   int a, b, c;
    int toevTotaal;
    int delTotaal;
-   char antwoord;
    bool menuAan = true;
    while ( menuAan ) {
       cout << "Opties: ";
@@ -124,13 +125,15 @@ int main ( ) {
 		      else {
 		      cout << "Geen geldige optie." << endl;
 		      }
-         
-         
-         
 		      break;
          case 'V': case 'v':
-		      X[2].vermenigvuldig( X[0], X[1], X[2] );
-
+            cout << "Geef linkerlid: (A, B, of C)";
+           // if ( leesOptie( antwoord, buffer ) == 'a') {
+            //a = 0;
+           // }
+            
+		      X[2].vermenigvuldig( X[a], X[1], X[2] );
+            bufferSchoonmaken( buffer );
 		      break;
          case 'T': case 't':
 		      X[2].telop( X[0], X[1] );
