@@ -7,6 +7,13 @@ using namespace std;
 // prototypes uit
 // gg.h
 
+int machtTien ( int k ) {
+   int getal = 1;
+   for ( int i = 0; i < k; i++ ) {
+      getal = getal * 10;      
+   }
+   return getal;
+}
 int cijferTeller( int getal ) {
    int cijferTeller = 0;
    while ( getal != 0 ) {
@@ -20,7 +27,7 @@ int cijferTeller( int getal ) {
 gg::gg( ) {
   ingang = NULL;
   uitgang = NULL;
-  k = 4;
+  k = 3;
   verschuiving = 0;
   toevElement = 0;
   delElement = 0;
@@ -31,17 +38,15 @@ gg::gg( ) {
 
 // druk lijst met ingang als ingang af
 void gg::print( ) {
-   cout << "Lijst afdrukken van voor naar achter..." << endl;
    int bootTeller = 0;
    element* hulp = ingang;
    if ( hulp == NULL ) {
       cout << "NULL";
-      aantalBoten = 0;
-   }
+   } // if
    while ( hulp != NULL ) {
       bootTeller = cijferTeller( hulp->info );
       if ( bootTeller < k && hulp->vorige != NULL ) {
-         for ( int i = 4; i > bootTeller; i-- ) {
+         for ( int i = k; i > bootTeller; i-- ) {
             cout << "0";
          } // for
       } // if
@@ -71,6 +76,7 @@ void gg::voegVoor(int getal) {
       eenVakje->volgende = ingang;
       eenVakje->info = getal;
       ingang = eenVakje;
+      aantalBoten++;
       //bufferSchoonmaken( buffer );
 } //gg::voegVoor
 
@@ -90,6 +96,7 @@ void gg::voegAchter( int getal ) {
       eenVakje->volgende = NULL;
       eenVakje->info = getal;
       uitgang = eenVakje;
+      aantalBoten++;
 }//gg::bouwlijst
 
 // door de gebruiker gegeven getal inlezen tot maximaal 1000
@@ -100,7 +107,6 @@ void gg::leesGetal( ) {
    char keuze = '\n';
  	int getal = 0;
  	int teller = 0;
- 	aantalBoten = 0;
  	verwijderen( );
  	cout << "welke info erin? ";
    while ( vorigeKeuze == '\n' || keuze != '\n' ) {
@@ -115,7 +121,6 @@ void gg::leesGetal( ) {
       } // if
       if ( teller == k && nulOntwijker ) {
          voegAchter( getal );
-         aantalBoten++;
          teller = 0;
          getal = 0;
       } // if
@@ -123,7 +128,6 @@ void gg::leesGetal( ) {
    if ( teller > 0 ) {
    	verschuiving = k - teller;
       voegAchter( getal );
-      aantalBoten++;
    } // if
    hevelen( );
 } // gg::leesGetal
@@ -132,11 +136,12 @@ void gg::hevelen( ) {
    int d;
    int r = 0;
    int bootje;
-   double bootVerschuiving;
-   double bootDeler;
+   int bootVerschuiving;
+   int bootDeler;
    if ( verschuiving > 0 ) {
-   	bootVerschuiving = pow( 10, verschuiving );
-   	bootDeler = pow( 10, k - verschuiving );
+      bootVerschuiving = machtTien( verschuiving );
+   	bootDeler = machtTien( k - verschuiving );
+   	
    	element* hulp = ingang;
    	while ( hulp != NULL ) {
          bootje = hulp->info;
@@ -147,7 +152,7 @@ void gg::hevelen( ) {
          } else {
          	hulp->info = ( r * bootDeler ) + d;
          } // if/else
-         r = fmod( bootje, bootVerschuiving );
+         r = bootje % bootVerschuiving;
          hulp = hulp->volgende;
       } // while
    } // if
@@ -156,7 +161,6 @@ void gg::hevelen( ) {
 void gg::telop( gg A, gg B ) {
 	int C;
 	int hulpC = 0;
-	double kMacht;
 	element* hulpA = A.uitgang;
 	element* hulpB = B.uitgang;
 	element* overig;
@@ -164,12 +168,8 @@ void gg::telop( gg A, gg B ) {
 	while ( hulpA != NULL && hulpB != NULL ) {
 
 		C = hulpA->info + hulpB->info + hulpC;
-
-		kMacht = pow( 10, k );
-		hulpC = C / kMacht;
-		C = fmod( C, kMacht );
-
-
+		hulpC = C / machtTien( k );
+      C = C % machtTien( k );
 		hulpA = hulpA->vorige;
 		hulpB = hulpB->vorige;
 
@@ -183,8 +183,7 @@ void gg::telop( gg A, gg B ) {
 	} // if/else
 	while ( overig != NULL ) {
 		C = overig->info + hulpC;
-
-		hulpC = pow( 10, k );
+		hulpC = machtTien( k );
 		C = C % hulpC;
 		hulpC = C / hulpC;
 
@@ -209,6 +208,7 @@ void gg::verwijderen( ) {
       delete uitgang;
       delElement++;
       uitgang = NULL;
+      aantalBoten = 0;
    } // if
 } // gg::verwijderen
 
@@ -256,7 +256,6 @@ void gg::vermenigvuldig( gg A, gg B, gg& C ) {
    gg temp;
    int rekenC;
 	int rest = 0;
-	double kMacht;
 	int maakNullenTeller = 0;
    //int limiet = B.getAantalBoten( );
    element* hulpB = B.uitgang;
@@ -265,24 +264,19 @@ void gg::vermenigvuldig( gg A, gg B, gg& C ) {
       hulpC.maakNullen( maakNullenTeller );
       while ( hulpA != NULL ) {
          rekenC = hulpA->info * hulpB->info + rest;
-
-         kMacht = pow( 10, k );
-         rest = rekenC / kMacht;
-         rekenC = fmod( rekenC, kMacht );
-
-         //cout << rest << endl << rekenC << endl << endl;
+         rest = rekenC / machtTien( k );
+         rekenC = rekenC % machtTien( k );
          hulpC.voegVoor( rekenC );
          hulpA = hulpA->vorige;
 
       }
-      hulpC.voegVoor ( rest );
+      if ( rest > 0 ) {
+         hulpC.voegVoor ( rest );
+      }
       rest = 0;
       temp.kopieer( C );
       telop( temp, hulpC );
       maakNullenTeller++;
       hulpB = hulpB->vorige;
    }
-
-   //verwijderen ( );
 }
-
