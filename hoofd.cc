@@ -11,7 +11,7 @@ void bufferSchoonmaken ( char buffer ) {
       } // while
    } // if
 } // bufferSchoonmaken
-//test
+
 // keuze van gebruiker inlezen
 void leesOptie ( char& keuze, char& buffer ) {
    keuze = '\n';
