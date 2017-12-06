@@ -5,6 +5,7 @@ struct element {
 };//element
 
 class gg {
+   static int const k = 4;
    public:
         gg ( );
       void print ( );
@@ -13,7 +14,6 @@ class gg {
  	   void verwijderen ( );
  	   void fibonacci ( int n, gg& A );
  	   void vermenigvuldig ( gg A, gg B, gg& C );
- 	   //static const int k;
  	    int delElement;
  	    int toevElement;
  	    int getAantalBoten ( );
@@ -28,7 +28,6 @@ class gg {
  	   void maakeen ( );
  	   void kopieer ( gg B );
        int verschuiving;
- 	    int k;
  	    int aantalBoten;
 };//gg
 

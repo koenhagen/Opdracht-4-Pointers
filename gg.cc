@@ -10,7 +10,7 @@ using namespace std;
 int machtTien ( int k ) {
    int getal = 1;
    for ( int i = 0; i < k; i++ ) {
-      getal = getal * 10;      
+      getal = getal * 10;
    }
    return getal;
 }
@@ -27,7 +27,6 @@ int cijferTeller( int getal ) {
 gg::gg( ) {
   ingang = NULL;
   uitgang = NULL;
-  k = 3;
   verschuiving = 0;
   toevElement = 0;
   delElement = 0;
@@ -141,7 +140,7 @@ void gg::hevelen( ) {
    if ( verschuiving > 0 ) {
       bootVerschuiving = machtTien( verschuiving );
    	bootDeler = machtTien( k - verschuiving );
-   	
+
    	element* hulp = ingang;
    	while ( hulp != NULL ) {
          bootje = hulp->info;
