@@ -11,7 +11,7 @@ void bufferSchoonmaken ( char buffer ) {
       } // while
    } // if
 } // bufferSchoonmaken
-
+//test
 // keuze van gebruiker inlezen
 void leesOptie ( char& keuze, char& buffer ) {
    keuze = '\n';
@@ -37,7 +37,7 @@ int leesGetal ( ) {
          getal = ( getal * 10 ) + ( keuze - '0' );
       } // if
    } // while
-   
+
    cout << getal << endl;
    return getal;
 } // leesGetal
@@ -131,7 +131,7 @@ int main ( ) {
            // if ( leesOptie( antwoord, buffer ) == 'a') {
             //a = 0;
            // }
-            
+
 		      X[2].vermenigvuldig( X[a], X[1], X[2] );
             bufferSchoonmaken( buffer );
 		      break;
