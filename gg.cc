@@ -1,6 +1,5 @@
 #include "gg.h"
 #include <iostream>
-#include <math.h>
 
 using namespace std;
 // implementatie van
@@ -263,7 +262,7 @@ void gg::vermenigvuldig( gg A, gg B ) {
    gg C;
    gg hulpC;
    gg temp;
-   int rekenC;
+   long long rekenC;
 	int rest = 0;
 	int maakNullenTeller = 0;
    element* hulpB = B.uitgang;
@@ -271,12 +270,14 @@ void gg::vermenigvuldig( gg A, gg B ) {
       element* hulpA = A.uitgang;
       hulpC.maakNullen( maakNullenTeller );
       while ( hulpA != NULL ) {
-         rekenC = hulpA->info * hulpB->info + rest;
-
+         rekenC = (long long) hulpA->info * hulpB->info + rest;
+         cout << hulpA->info << endl;
+         cout << hulpB->info << endl;
+			cout << rekenC << endl;
          rest = rekenC / machtTien( k );
          rekenC = rekenC % machtTien( k );
 
-         //cout << rest << endl << rekenC << endl << endl;
+         cout << rest << endl << rekenC << endl << endl;
          hulpC.voegVoor( rekenC );
          hulpA = hulpA->vorige;
 
@@ -288,7 +289,7 @@ void gg::vermenigvuldig( gg A, gg B ) {
       temp.kopieer( C );
       C.telop( temp, hulpC );
       maakNullenTeller++;
-      hulpB    = hulpB->vorige;
+      hulpB = hulpB->vorige;
    }
    kopieer ( C );
 }

@@ -5,7 +5,7 @@ struct element {
 };//element
 
 class gg {
-   static int const k = 4;
+   static int const k = 7;
    public:
         gg( );
       void print( );

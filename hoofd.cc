@@ -38,6 +38,7 @@ void leesOptie( char& keuze, char& buffer ) {
    if ( buffer != '\n' ) {          // als dit het geval is:
       keuze = '0';                  // keuze ongeldig maken
    } // if
+   bufferSchoonmaken ( buffer );
 } // leesOptie
 
 // door de gebruiker gegeven getal inlezen
@@ -80,7 +81,6 @@ int main( ) {
    while ( menuAan ) {
       menuOpties ( );
 	   leesOptie( keuze, buffer );
-      bufferSchoonmaken( buffer );
       switch ( keuze ) {
          case 'S': case 's':
             toevTotaal = X[0].toevElement + X[1].toevElement + X[2].toevElement;
@@ -93,7 +93,6 @@ int main( ) {
          case 'L': case 'l':
             cout << "waarin? (A, B of C): ";
             leesOptie( keuze, buffer );
-            bufferSchoonmaken( buffer );
             grootGetal = grootGetalKeuze( keuze );
             if ( grootGetal < 3 ) {       // een ongeldige optie vermijden
                cout << "Geef getal: ";
@@ -117,7 +116,6 @@ int main( ) {
          case 'F': case 'f':
             cout << "waarin? (A, B of C): ";
             leesOptie( keuze, buffer );
-            bufferSchoonmaken( buffer );
             grootGetal = grootGetalKeuze( keuze );
             if ( grootGetal < 3 ) {       // een ongeldige optie vermijden
                cout << "Geef getal: ";
@@ -129,15 +127,12 @@ int main( ) {
          case 'V': case 'v':
             cout << "Geef linkerlid: (A, B, of C) ";
             leesOptie( keuze, buffer );
-            bufferSchoonmaken ( buffer );
             a = grootGetalKeuze ( keuze );
             cout << "Geef rechterlid: (A, B, of C) ";
             leesOptie( keuze, buffer );
-            bufferSchoonmaken ( buffer );
             b = grootGetalKeuze ( keuze );
 		      cout << "Waarheen? (A, B of C) ";
             leesOptie( keuze, buffer );
-            bufferSchoonmaken ( buffer );
             c = grootGetalKeuze ( keuze );
             if ( a < 3 && b < 3 && c < 3 ) {
 		         X[c].vermenigvuldig( X[a], X[b] );
@@ -146,15 +141,12 @@ int main( ) {
          case 'T': case 't':
             cout << "Geef linkerlid: (A, B, of C) ";
             leesOptie( keuze, buffer );
-            bufferSchoonmaken ( buffer );
             a = grootGetalKeuze ( keuze );
             cout << "Geef rechterlid: (A, B, of C) ";
             leesOptie( keuze, buffer );
-            bufferSchoonmaken ( buffer );
             b = grootGetalKeuze ( keuze );
 		      cout << "Waarheen? (A, B of C) ";
             leesOptie( keuze, buffer );
-            bufferSchoonmaken ( buffer );
             c = grootGetalKeuze ( keuze );
             if ( a < 3 && b < 3 && c < 3 ) {
 		         X[c].telop( X[a], X[b] );
