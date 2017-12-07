@@ -41,6 +41,7 @@ void leesOptie( char& keuze, char& buffer ) {
    bufferSchoonmaken ( buffer );
 } // leesOptie
 
+// meerdere grote getallen inlezen en koppelen aan juist getal voor array (a, b, c)
 void grootGetalKeuzes( int& a, int& b, int& c ) {
 	char keuze;
 	char buffer;
@@ -54,6 +55,7 @@ void grootGetalKeuzes( int& a, int& b, int& c ) {
    leesOptie( keuze, buffer );
    c = grootGetalKeuze ( keuze );
 }
+
 // door de gebruiker gegeven getal inlezen
 // enters en niet-getallen negeren
 int leesGetal( ) {
@@ -70,6 +72,7 @@ int leesGetal( ) {
    return getal;
 } // leesGetal
 
+// menuopties naar scherm schrijven
 void menuOpties ( ) {
    cout << "Opties: "
         << "(P)rint - "
