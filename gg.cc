@@ -4,7 +4,7 @@
 using namespace std;
 
 // functie voor tien tot de macht k (grootte van bootjes)
-int machtTien( int k ) {
+int tienMacht( int k ) {
    int getal = 1;
    for ( int i = 0; i < k; i++ ) {
       getal = getal * 10;
@@ -140,8 +140,8 @@ void gg::hevelen( ) {
    int bootVerschuiving;
    int bootDeler;
    if ( verschuiving > 0 ) {
-      bootVerschuiving = machtTien( verschuiving );
-   	bootDeler = machtTien( k - verschuiving );
+      bootVerschuiving = tienMacht( verschuiving );
+   	bootDeler = tienMacht( k - verschuiving );
 
    	element* hulp = ingang;
    	while ( hulp != NULL ) {
@@ -160,7 +160,7 @@ void gg::hevelen( ) {
 } // gg::hevelen
 
 // twee grote getallen optellen
-void gg::telop( gg & A, gg & B ) {
+void gg::telop( gg& A, gg& B ) {
 	int C;
 	int hulpC = 0;
 	element* hulpA = A.uitgang;
@@ -171,8 +171,8 @@ void gg::telop( gg & A, gg & B ) {
 
 		C = hulpA->info + hulpB->info + hulpC;
 
-		hulpC = C / machtTien( k );
-      C = C % machtTien( k );
+		hulpC = C / tienMacht( k );
+      C = C % tienMacht( k );
 
 
 		hulpA = hulpA->vorige;
@@ -189,11 +189,9 @@ void gg::telop( gg & A, gg & B ) {
 	while ( overig != NULL ) {
 		C = overig->info + hulpC;
 
-		hulpC = C / hulpC;
-		C = C % machtTien( k );
+      hulpC = C / tienMacht( k );
+      C = C % tienMacht( k );
 
-
-		//cout << hulpC << endl << C << endl;
 		voegVoor( C );
 
 		overig = overig->vorige;
@@ -222,7 +220,6 @@ void gg::verwijderen( ) {
 // de n'ste fibonacci getal uitrekenen
 void gg::fibonacci( int n ) {
    gg eerste;
-
    gg hulp;
    eerste.maakeen( );
    maakeen( );
@@ -238,7 +235,7 @@ void gg::fibonacci( int n ) {
 }
 
 // doorgegeven grote getal (gg A) kopiëren naar aangeroepen grote getal
-void gg::kopieer( gg & A ) {
+void gg::kopieer( gg& A ) {
    verwijderen( );               // grote getal gereed voor kopieren maken (leeg)
    element* hulp = A.ingang;     // vanaf ingang van gg A
    while ( hulp != NULL ) {      // loopen tot einde
@@ -262,7 +259,7 @@ void gg::maakNullen( int m ) {
 }
 
 // twee grote getallen met elkaar vermenigvuldigen
-void gg::vermenigvuldig( gg A, gg B ) {
+void gg::vermenigvuldig( gg& A, gg& B ) {
    gg C;
    gg hulpC;
    gg temp;
@@ -276,8 +273,8 @@ void gg::vermenigvuldig( gg A, gg B ) {
       while ( hulpA != NULL ) {
          rekenC = (long long) hulpA->info * hulpB->info + rest;
 
-         rest = rekenC / machtTien( k );
-         rekenC = rekenC % machtTien( k );
+         rest = rekenC / tienMacht( k );
+         rekenC = rekenC % tienMacht( k );
 
          //cout << rest << endl << rekenC << endl << endl;
          hulpC.voegVoor( rekenC );

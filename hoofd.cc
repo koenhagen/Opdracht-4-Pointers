@@ -141,6 +141,7 @@ int main( ) {
          case 'V': case 'v':
             grootGetalKeuzes( a, b, c );
             if ( a < 3 && b < 3 && c < 3 ) {
+               cout << "ben hier" << a << b << c << endl;
 		         X[c].vermenigvuldig( X[a], X[b] );
 		      }
 		      break;
