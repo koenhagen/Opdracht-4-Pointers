@@ -70,6 +70,7 @@ void menuOpties ( ) {
 
 int main( ) {
    gg X[3];
+   int a, b, c;
    char keuze;
    char buffer;
    int grootGetal;
@@ -126,16 +127,38 @@ int main( ) {
 
 		      break;
          case 'V': case 'v':
-            cout << "Geef linkerlid: (A, B, of C)";
-           // if ( leesOptie( keuze, buffer ) == 'a') {
-            //a = 0;
-           // }
-            X[2].vermenigvuldig(X[0], X[1]);
-		      //X[2].vermenigvuldig( X[a], X[1], X[2] );
-            bufferSchoonmaken( buffer );
+            cout << "Geef linkerlid: (A, B, of C) ";
+            leesOptie( keuze, buffer );
+            bufferSchoonmaken ( buffer );
+            a = grootGetalKeuze ( keuze );
+            cout << "Geef rechterlid: (A, B, of C) ";
+            leesOptie( keuze, buffer );
+            bufferSchoonmaken ( buffer );
+            b = grootGetalKeuze ( keuze );
+		      cout << "Waarheen? (A, B of C) ";
+            leesOptie( keuze, buffer );
+            bufferSchoonmaken ( buffer );
+            c = grootGetalKeuze ( keuze );
+            if ( a < 3 && b < 3 && c < 3 ) {
+		         X[c].vermenigvuldig( X[a], X[b] );
+		      }
 		      break;
          case 'T': case 't':
-		      X[2].telop( X[0], X[1] );
+            cout << "Geef linkerlid: (A, B, of C) ";
+            leesOptie( keuze, buffer );
+            bufferSchoonmaken ( buffer );
+            a = grootGetalKeuze ( keuze );
+            cout << "Geef rechterlid: (A, B, of C) ";
+            leesOptie( keuze, buffer );
+            bufferSchoonmaken ( buffer );
+            b = grootGetalKeuze ( keuze );
+		      cout << "Waarheen? (A, B of C) ";
+            leesOptie( keuze, buffer );
+            bufferSchoonmaken ( buffer );
+            c = grootGetalKeuze ( keuze );
+            if ( a < 3 && b < 3 && c < 3 ) {
+		         X[c].telop( X[a], X[b] );
+		      }
             break;
 	      default:
 	         cout << "Geen geldige optie" << endl;
