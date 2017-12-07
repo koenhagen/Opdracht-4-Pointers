@@ -32,6 +32,10 @@ gg::gg( ) {
   aantalBoten = 0;
 } //gg::gg
 
+gg::~gg( ) {
+	verwijderen( );
+}
+
 //const int gg::aantalBoten = 0;
 
 // druk lijst met ingang als ingang af
@@ -123,7 +127,7 @@ void gg::leesGetal( ) {
          getal = 0;
       } // if
    } // while
-   if ( teller > 0 ) {
+   if ( teller > 0 && nulOntwijker ) {
    	verschuiving = k - teller;
       voegAchter( getal );
    } // if
@@ -156,7 +160,7 @@ void gg::hevelen( ) {
    } // if
 } // gg::hevelen
 
-void gg::telop( gg A, gg B ) {
+void gg::telop( gg & A, gg & B ) {
 	int C;
 	int hulpC = 0;
 	element* hulpA = A.uitgang;
@@ -185,9 +189,9 @@ void gg::telop( gg A, gg B ) {
 	while ( overig != NULL ) {
 		C = overig->info + hulpC;
 
-		hulpC = machtTien( k );
-		C = C % hulpC;
 		hulpC = C / hulpC;
+		C = C % machtTien( k );
+		
 
 		//cout << hulpC << endl << C << endl;
 		voegVoor( C );
@@ -216,23 +220,23 @@ void gg::verwijderen( ) {
 
 void gg::fibonacci( int n ) {
    gg eerste;
-   gg tweede;
+ 
    gg hulp;
    eerste.maakeen( );
-   tweede.maakeen( );
-   for ( int teller = 3; teller <= n; teller++ ) {
-      hulp.kopieer( tweede );
-      tweede.telop( eerste, hulp );
-      eerste.kopieer( hulp );
-   }
-   kopieer ( tweede );
-   eerste.verwijderen( );
-   tweede.verwijderen( );
-   hulp.verwijderen( );
+   maakeen( );
+   if ( n ==  0 ) {
+   	verwijderen( );
+   } else {
+		for ( int teller = 3; teller <= n; teller++ ) {
+		   hulp.kopieer( *this );
+		   telop( eerste, hulp );
+		   eerste.kopieer( hulp );
+		}
+	}
 }
 
 // doorgegeven grote getal (gg A) kopiëren naar aangeroepen grote getal
-void gg::kopieer( gg A ) {
+void gg::kopieer( gg & A ) {
    verwijderen( );               // grote getal gereed voor kopieren maken (leeg)
    element* hulp = A.ingang;     // vanaf ingang van gg A
    while ( hulp != NULL ) {      // loopen tot einde
@@ -271,13 +275,11 @@ void gg::vermenigvuldig( gg A, gg B ) {
       hulpC.maakNullen( maakNullenTeller );
       while ( hulpA != NULL ) {
          rekenC = (long long) hulpA->info * hulpB->info + rest;
-         cout << hulpA->info << endl;
-         cout << hulpB->info << endl;
-			cout << rekenC << endl;
+         
          rest = rekenC / machtTien( k );
          rekenC = rekenC % machtTien( k );
 
-         cout << rest << endl << rekenC << endl << endl;
+         //cout << rest << endl << rekenC << endl << endl;
          hulpC.voegVoor( rekenC );
          hulpA = hulpA->vorige;
 

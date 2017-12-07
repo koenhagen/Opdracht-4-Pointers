@@ -41,6 +41,19 @@ void leesOptie( char& keuze, char& buffer ) {
    bufferSchoonmaken ( buffer );
 } // leesOptie
 
+void grootGetalKeuzes( int& a, int& b, int& c ) {
+	char keuze;
+	char buffer;
+	cout << "Geef linkerlid: (A, B, of C) ";
+   leesOptie( keuze, buffer );
+   a = grootGetalKeuze ( keuze );
+   cout << "Geef rechterlid: (A, B, of C) ";
+   leesOptie( keuze, buffer );
+   b = grootGetalKeuze ( keuze );
+   cout << "Waarheen? (A, B of C) ";
+   leesOptie( keuze, buffer );
+   c = grootGetalKeuze ( keuze );
+}
 // door de gebruiker gegeven getal inlezen
 // enters en niet-getallen negeren
 int leesGetal( ) {
@@ -121,33 +134,15 @@ int main( ) {
                cout << "Geef getal: ";
                X[grootGetal].fibonacci( leesGetal( ) );
             }
-
-
 		      break;
          case 'V': case 'v':
-            cout << "Geef linkerlid: (A, B, of C) ";
-            leesOptie( keuze, buffer );
-            a = grootGetalKeuze ( keuze );
-            cout << "Geef rechterlid: (A, B, of C) ";
-            leesOptie( keuze, buffer );
-            b = grootGetalKeuze ( keuze );
-		      cout << "Waarheen? (A, B of C) ";
-            leesOptie( keuze, buffer );
-            c = grootGetalKeuze ( keuze );
+            grootGetalKeuzes( a, b, c );
             if ( a < 3 && b < 3 && c < 3 ) {
 		         X[c].vermenigvuldig( X[a], X[b] );
 		      }
 		      break;
          case 'T': case 't':
-            cout << "Geef linkerlid: (A, B, of C) ";
-            leesOptie( keuze, buffer );
-            a = grootGetalKeuze ( keuze );
-            cout << "Geef rechterlid: (A, B, of C) ";
-            leesOptie( keuze, buffer );
-            b = grootGetalKeuze ( keuze );
-		      cout << "Waarheen? (A, B of C) ";
-            leesOptie( keuze, buffer );
-            c = grootGetalKeuze ( keuze );
+            grootGetalKeuzes( a, b, c );
             if ( a < 3 && b < 3 && c < 3 ) {
 		         X[c].telop( X[a], X[b] );
 		      }

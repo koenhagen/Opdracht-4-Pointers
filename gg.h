@@ -5,12 +5,13 @@ struct element {
 };//element
 
 class gg {
-   static int const k = 7;
+   static int const k = 4;
    public:
         gg( );
+       ~gg( );
       void print( );
       void leesGetal( );
-      void telop( gg A, gg B );
+      void telop( gg& A, gg& B );
  	   void verwijderen( );
  	   void fibonacci( int n );
  	   void vermenigvuldig( gg A, gg B );
@@ -26,7 +27,7 @@ class gg {
  	   void hevelen( );
  	   void maakNullen( int m );
  	   void maakeen( );
- 	   void kopieer( gg B );
+ 	   void kopieer( gg& B );
        int verschuiving;
  	    int aantalBoten;
 };//gg
