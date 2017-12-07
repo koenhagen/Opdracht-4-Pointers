@@ -7,7 +7,7 @@ using namespace std;
 // prototypes uit
 // gg.h
 
-int machtTien ( int k ) {
+int machtTien( int k ) {
    int getal = 1;
    for ( int i = 0; i < k; i++ ) {
       getal = getal * 10;
@@ -215,28 +215,33 @@ void gg::verwijderen( ) {
    } // if
 } // gg::verwijderen
 
-void gg::fibonacci( int n, gg& A ) {
+void gg::fibonacci( int n ) {
    gg eerste;
+   gg tweede;
    gg hulp;
    eerste.maakeen( );
-   maakeen( );
+   tweede.maakeen( );
    for ( int teller = 3; teller <= n; teller++ ) {
-      hulp.kopieer( A );
-      telop( eerste, hulp );
+      hulp.kopieer( tweede );
+      tweede.telop( eerste, hulp );
       eerste.kopieer( hulp );
    }
+   kopieer ( tweede );
    eerste.verwijderen( );
+   tweede.verwijderen( );
    hulp.verwijderen( );
 }
 
-void gg::kopieer( gg B ) {
-   verwijderen( );
-   element* hulp = B.ingang;
-   while ( hulp != NULL ) {
-      voegAchter( hulp->info );
+// doorgegeven grote getal (gg A) kopiëren naar aangeroepen grote getal
+void gg::kopieer( gg A ) {
+   verwijderen( );               // grote getal gereed voor kopieren maken (leeg)
+   element* hulp = A.ingang;     // vanaf ingang van gg A
+   while ( hulp != NULL ) {      // loopen tot einde
+      voegAchter( hulp->info );  // elk bootje van A achter grote getal voegen
       hulp = hulp->volgende;
    }
 }
+
 
 void gg::maakeen( ) {
    verwijderen( );
@@ -254,13 +259,13 @@ void gg::maakNullen( int m ) {
    //return aantalBoten;
 //}
 
-void gg::vermenigvuldig( gg A, gg B, gg& C ) {
+void gg::vermenigvuldig( gg A, gg B ) {
+   gg C;
    gg hulpC;
    gg temp;
    int rekenC;
 	int rest = 0;
 	int maakNullenTeller = 0;
-   //int limiet = B.getAantalBoten( );
    element* hulpB = B.uitgang;
    while ( hulpB != NULL ) {
       element* hulpA = A.uitgang;
@@ -277,12 +282,13 @@ void gg::vermenigvuldig( gg A, gg B, gg& C ) {
 
       }
       if ( rest > 0 ) {
-         hulpC.voegVoor ( rest );
+         hulpC.voegVoor( rest );
       }
       rest = 0;
       temp.kopieer( C );
-      telop( temp, hulpC );
+      C.telop( temp, hulpC );
       maakNullenTeller++;
-      hulpB = hulpB->vorige;
+      hulpB    = hulpB->vorige;
    }
+   kopieer ( C );
 }
