@@ -5,7 +5,7 @@ using namespace std;
 // implementatie van
 // prototypes uit
 // gg.h
-
+// test
 int machtTien( int k ) {
    int getal = 1;
    for ( int i = 0; i < k; i++ ) {
@@ -191,7 +191,7 @@ void gg::telop( gg & A, gg & B ) {
 
 		hulpC = C / hulpC;
 		C = C % machtTien( k );
-		
+
 
 		//cout << hulpC << endl << C << endl;
 		voegVoor( C );
@@ -220,7 +220,7 @@ void gg::verwijderen( ) {
 
 void gg::fibonacci( int n ) {
    gg eerste;
- 
+
    gg hulp;
    eerste.maakeen( );
    maakeen( );
@@ -275,7 +275,7 @@ void gg::vermenigvuldig( gg A, gg B ) {
       hulpC.maakNullen( maakNullenTeller );
       while ( hulpA != NULL ) {
          rekenC = (long long) hulpA->info * hulpB->info + rest;
-         
+
          rest = rekenC / machtTien( k );
          rekenC = rekenC % machtTien( k );
 
