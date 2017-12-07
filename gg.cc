@@ -109,7 +109,6 @@ void gg::leesGetal( ) {
  	int getal = 0;
  	int teller = 0;
  	verwijderen( );
- 	cout << "welke info erin? ";
    while ( vorigeKeuze == '\n' || keuze != '\n' ) {
       vorigeKeuze = keuze;
       cin.get( keuze );
