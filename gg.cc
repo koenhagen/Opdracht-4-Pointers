@@ -168,11 +168,8 @@ void gg::telop( gg A, gg B ) {
 	while ( hulpA != NULL && hulpB != NULL ) {
 
 		C = hulpA->info + hulpB->info + hulpC;
-
 		hulpC = C / machtTien( k );
       C = C % machtTien( k );
-
-
 		hulpA = hulpA->vorige;
 		hulpB = hulpB->vorige;
 
@@ -186,7 +183,6 @@ void gg::telop( gg A, gg B ) {
 	} // if/else
 	while ( overig != NULL ) {
 		C = overig->info + hulpC;
-
 		hulpC = machtTien( k );
 		C = C % hulpC;
 		hulpC = C / hulpC;
@@ -268,11 +264,8 @@ void gg::vermenigvuldig( gg A, gg B, gg& C ) {
       hulpC.maakNullen( maakNullenTeller );
       while ( hulpA != NULL ) {
          rekenC = hulpA->info * hulpB->info + rest;
-
          rest = rekenC / machtTien( k );
          rekenC = rekenC % machtTien( k );
-
-         //cout << rest << endl << rekenC << endl << endl;
          hulpC.voegVoor( rekenC );
          hulpA = hulpA->vorige;
 

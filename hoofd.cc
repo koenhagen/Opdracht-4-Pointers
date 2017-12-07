@@ -47,7 +47,7 @@ int main ( ) {
    char invoer;
    char buffer;
    char antwoord;
-   int a, b, c;
+   int a = 0, b = 1, c = 2;
    int toevTotaal;
    int delTotaal;
    bool menuAan = true;
@@ -126,17 +126,77 @@ int main ( ) {
 		      cout << "Geen geldige optie." << endl;
 		      }
 		      break;
-         case 'V': case 'v':
-            cout << "Geef linkerlid: (A, B, of C)";
-           // if ( leesOptie( antwoord, buffer ) == 'a') {
-            //a = 0;
-           // }
-            
-		      X[2].vermenigvuldig( X[a], X[1], X[2] );
-            bufferSchoonmaken( buffer );
+         case 'V': case 'v': 
+            cout << "Geef linkerlid: (A, B, of C) ";
+            leesOptie( antwoord, buffer );
+            if ( antwoord == 'a' || antwoord == 'A') {
+            a = 0;
+            }
+            else if ( antwoord == 'b' || antwoord == 'B') {
+		      a = 1;
+		      }
+		      else if ( antwoord == 'c' || antwoord == 'C') {
+		      a = 2;
+		      }
+            cout << "Geef rechterlid: (A, B, of C) ";
+            leesOptie( antwoord, buffer );
+            if ( antwoord == 'a' || antwoord == 'A') {
+            b = 0;
+            }
+            else if ( antwoord == 'b' || antwoord == 'B') {
+		      b = 1;
+		      }
+		      else if ( antwoord == 'c' || antwoord == 'C') {
+		      b = 2;
+		      }
+		      cout << "Waarheen? (A, B of C) ";
+            leesOptie( antwoord, buffer );
+            if ( antwoord == 'a' || antwoord == 'A') {
+            c = 0;
+            }
+            else if ( antwoord == 'b' || antwoord == 'B') {
+		      c = 1;
+		      }
+		      else if ( antwoord == 'c' || antwoord == 'C') {
+		      c = 2;
+		      }
+		      X[c].vermenigvuldig( X[a], X[b], X[c] );
 		      break;
-         case 'T': case 't':
-		      X[2].telop( X[0], X[1] );
+         case 'T': case 't': 
+            cout << "Geef linkerlid: (A, B, of C) ";
+            leesOptie( antwoord, buffer );
+            if ( antwoord == 'a' || antwoord == 'A') {
+            a = 0;
+            }
+            else if ( antwoord == 'b' || antwoord == 'B') {
+		      a = 1;
+		      }
+		      else if ( antwoord == 'c' || antwoord == 'C') {
+		      a = 2;
+		      }
+            cout << "Geef rechterlid: (A, B, of C) ";
+            leesOptie( antwoord, buffer );
+            if ( antwoord == 'a' || antwoord == 'A') {
+            b = 0;
+            }
+            else if ( antwoord == 'b' || antwoord == 'B') {
+		      b = 1;
+		      }
+		      else if ( antwoord == 'c' || antwoord == 'C') {
+		      b = 2;
+		      }
+		      cout << "Waarheen? (A, B of C) ";
+            leesOptie( antwoord, buffer );
+            if ( antwoord == 'a' || antwoord == 'A') {
+            c = 0;
+            }
+            else if ( antwoord == 'b' || antwoord == 'B') {
+		      c = 1;
+		      }
+		      else if ( antwoord == 'c' || antwoord == 'C') {
+		      c = 2;
+		      }
+		      X[c].telop( X[a], X[b] );
             break;
 	      default:
 	         cout << "Geen geldige optie" << endl;
