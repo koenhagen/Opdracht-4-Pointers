@@ -259,7 +259,6 @@ void gg::maakNullen( int m ) {
 
 // twee grote getallen met elkaar vermenigvuldigen
 void gg::vermenigvuldig( gg& A, gg& B ) {
-   gg C;
    gg hulpC;
    gg temp;
    long long rekenC;
@@ -284,10 +283,9 @@ void gg::vermenigvuldig( gg& A, gg& B ) {
          hulpC.voegVoor( rest );
       } // if
       rest = 0;
-      temp.kopieer( C );
-      C.telop( temp, hulpC );
+      temp.kopieer( *this );
+      telop( temp, hulpC );
       maakNullenTeller++;
       hulpB = hulpB->vorige;
    } // while
-   kopieer( C );
 } // gg::vermenigvulig

@@ -13,7 +13,7 @@ int grootGetalKeuze( char keuze ) {
    } else if ( keuze == 'c' || keuze == 'C') {
       grootGetal = 2;
    } else {
-      cout << "geen geldige optie" << endl;
+      cout << "geen geldige optie: functie wordt niet uitgevoerd." << endl;
       grootGetal = 3; // ongeldige optie
    }
    return grootGetal;
