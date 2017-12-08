@@ -4,7 +4,7 @@
 using namespace std;
 
 // aan de hand van keuze gebruiker het juiste grote getal doorgeven voor array
-int grootGetalKeuze ( char keuze ) {
+int grootGetalKeuze( char keuze ) {
    int grootGetal;
    if ( keuze == 'a' || keuze == 'A') {
       grootGetal = 0;
@@ -13,7 +13,7 @@ int grootGetalKeuze ( char keuze ) {
    } else if ( keuze == 'c' || keuze == 'C') {
       grootGetal = 2;
    } else {
-      cout << "geen geldige optie" << endl;
+      cout << "geen geldige optie: functie wordt niet uitgevoerd." << endl;
       grootGetal = 3; // ongeldige optie
    }
    return grootGetal;
@@ -38,22 +38,24 @@ void leesOptie( char& keuze, char& buffer ) {
    if ( buffer != '\n' ) {          // als dit het geval is:
       keuze = '0';                  // keuze ongeldig maken
    } // if
-   bufferSchoonmaken ( buffer );
+   bufferSchoonmaken( buffer );
 } // leesOptie
 
+// meerdere grote getallen inlezen en koppelen aan juist getal voor array (a, b, c)
 void grootGetalKeuzes( int& a, int& b, int& c ) {
 	char keuze;
 	char buffer;
 	cout << "Geef linkerlid: (A, B, of C) ";
    leesOptie( keuze, buffer );
-   a = grootGetalKeuze ( keuze );
+   a = grootGetalKeuze( keuze );
    cout << "Geef rechterlid: (A, B, of C) ";
    leesOptie( keuze, buffer );
-   b = grootGetalKeuze ( keuze );
+   b = grootGetalKeuze( keuze );
    cout << "Waarheen? (A, B of C) ";
    leesOptie( keuze, buffer );
-   c = grootGetalKeuze ( keuze );
+   c = grootGetalKeuze( keuze );
 }
+
 // door de gebruiker gegeven getal inlezen
 // enters en niet-getallen negeren
 int leesGetal( ) {
@@ -70,7 +72,8 @@ int leesGetal( ) {
    return getal;
 } // leesGetal
 
-void menuOpties ( ) {
+// menuopties naar scherm schrijven
+void menuOpties( ) {
    cout << "Opties: "
         << "(P)rint - "
 	     << "(L)ees in - "
@@ -92,12 +95,15 @@ int main( ) {
    int delTotaal;
    bool menuAan = true;
    while ( menuAan ) {
-      menuOpties ( );
+      menuOpties( );
 	   leesOptie( keuze, buffer );
       switch ( keuze ) {
          case 'S': case 's':
-            toevTotaal = X[0].toevElement + X[1].toevElement + X[2].toevElement;
-            delTotaal = X[0].delElement + X[1].delElement + X[2].delElement;
+            for ( int i = 0; i < 3; i++ ) {
+               X[i].verwijderen( );
+               toevTotaal = X[i].toevElement;
+               delTotaal = X[i].delElement;
+            }
             cout << "Aantal elementen toegevoegd: " << toevTotaal << endl;
             cout << "Aantal elementen verwijderd: " << delTotaal << endl;
 		      cout << "Einde programma" << endl;

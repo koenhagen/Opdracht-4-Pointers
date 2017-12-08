@@ -14,7 +14,7 @@ class gg {
       void telop( gg& A, gg& B );
  	   void verwijderen( );
  	   void fibonacci( int n );
- 	   void vermenigvuldig( gg A, gg B );
+ 	   void vermenigvuldig( gg& A, gg& B );
  	    int delElement;
  	    int toevElement;
  	    int getAantalBoten( );
