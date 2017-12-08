@@ -99,8 +99,11 @@ int main( ) {
 	   leesOptie( keuze, buffer );
       switch ( keuze ) {
          case 'S': case 's':
-            toevTotaal = X[0].toevElement + X[1].toevElement + X[2].toevElement;
-            delTotaal = X[0].delElement + X[1].delElement + X[2].delElement;
+            for ( int i = 0; i < 3; i++ ) {
+               X[i].verwijderen( );
+               toevTotaal = X[i].toevElement;
+               delTotaal = X[i].delElement;
+            }
             cout << "Aantal elementen toegevoegd: " << toevTotaal << endl;
             cout << "Aantal elementen verwijderd: " << delTotaal << endl;
 		      cout << "Einde programma" << endl;

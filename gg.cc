@@ -35,7 +35,7 @@ gg::gg( ) {
 //destructor
 gg::~gg( ) {
 	verwijderen( );
-} //gg::~gg
+} // gg::~gg
 
 // print groot getal met juiste aantal nullen en aantal boten
 void gg::print( ) {
@@ -244,7 +244,7 @@ void gg::kopieer( gg& A ) {
 } // gg::kopieer
 
 // groot getal leegmaken en bootje van een toevoegen
-void gg::maaken( ) {
+void gg::maakeen( ) {
    verwijderen( );
    voegAchter( 1 );
 } // gg::maakeen
