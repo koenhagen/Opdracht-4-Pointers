@@ -1,3 +1,4 @@
+// inhoud bootje
 struct element {
     element* vorige;
     element* volgende;
@@ -5,6 +6,7 @@ struct element {
 };//element
 
 class gg {
+	// grootte van bootjes
    static int const k = 4;
    public:
         gg( );
@@ -15,10 +17,9 @@ class gg {
  	   void verwijderen( );
  	   void fibonacci( int n );
  	   void vermenigvuldig( gg& A, gg& B );
+ 	   void kopieer( gg& B );
  	    int delElement;
  	    int toevElement;
- 	    int getAantalBoten( );
-
    private:
       element* ingang;
       element* uitgang;
@@ -26,8 +27,7 @@ class gg {
       void voegVoor( int getal );
  	   void hevelen( );
  	   void maakNullen( int m );
- 	   void maakeen( );
- 	   void kopieer( gg& B );
+ 	   void maakEen( );
        int verschuiving;
  	    int aantalBoten;
 };//gg
