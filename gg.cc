@@ -8,9 +8,9 @@ int tienMacht( int k ) {
    int getal = 1;
    for ( int i = 0; i < k; i++ ) {
       getal = getal * 10;
-   }
+   } // for
    return getal;
-}
+} // tienMacht
 
 //tellen uit hoeveel cijfers het bootje bestaat
 int cijferTeller( int getal ) {
@@ -18,9 +18,9 @@ int cijferTeller( int getal ) {
    while ( getal != 0 ) {
       getal /= 10;
       cijferTeller++;
-	}
+	} // while
    return cijferTeller;
-} //gg::cijferTeller
+} // cijferTeller
 
 //constructor
 gg::gg( ) {
@@ -30,12 +30,12 @@ gg::gg( ) {
   toevElement = 0;
   delElement = 0;
   aantalBoten = 0;
-} //gg::gg
+} // gg::gg
 
 //destructor
 gg::~gg( ) {
 	verwijderen( );
-}
+} //gg::~gg
 
 // print groot getal met juiste aantal nullen en aantal boten
 void gg::print( ) {
@@ -57,7 +57,7 @@ void gg::print( ) {
          cout << " ";
       } // if/else
       hulp = hulp->volgende;
-   } //while
+   } // while
    cout << " (" << aantalBoten << ")" << endl;
 } //gg::print
 
@@ -78,8 +78,7 @@ void gg::voegVoor(int getal) {
       eenVakje->info = getal;
       ingang = eenVakje;
       aantalBoten++;
-      //bufferSchoonmaken( buffer );
-} //gg::voegVoor
+} // gg::voegVoor
 
 // voeg een bootje achter aan het grote getal
 void gg::voegAchter( int getal ) {
@@ -98,7 +97,7 @@ void gg::voegAchter( int getal ) {
       eenVakje->info = getal;
       uitgang = eenVakje;
       aantalBoten++;
-}//gg::bouwlijst
+}// gg::voegAchter
 
 // door de gebruiker gegeven getal inlezen en per k toevoegen aan grote getal
 // enters en niet-getallen negeren
@@ -230,9 +229,9 @@ void gg::fibonacci( int n ) {
 		   hulp.kopieer( *this );
 		   telop( eerste, hulp );
 		   eerste.kopieer( hulp );
-		}
-	}
-}
+		} // for
+	} // if/else
+} // gg:fibonacci
 
 // doorgegeven grote getal (gg A) kopiëren naar aangeroepen grote getal
 void gg::kopieer( gg& A ) {
@@ -241,22 +240,22 @@ void gg::kopieer( gg& A ) {
    while ( hulp != NULL ) {      // loopen tot einde
       voegAchter( hulp->info );  // elk bootje van A achter grote getal voegen
       hulp = hulp->volgende;
-   }
-}
+   } // while
+} // gg::kopieer
 
 // groot getal leegmaken en bootje van een toevoegen
-void gg::maakeen( ) {
+void gg::maaken( ) {
    verwijderen( );
    voegAchter( 1 );
-}
+} // gg::maakeen
 
 // groot getal leegmaken, m aantal boten met nul toevoegen
 void gg::maakNullen( int m ) {
    verwijderen( );
    for ( int teller = 0; teller < m; teller++ ) {
       voegAchter( 0 );
-   }
-}
+   } // for
+} // gg::maakNullen
 
 // twee grote getallen met elkaar vermenigvuldigen
 void gg::vermenigvuldig( gg& A, gg& B ) {
@@ -280,15 +279,15 @@ void gg::vermenigvuldig( gg& A, gg& B ) {
          hulpC.voegVoor( rekenC );
          hulpA = hulpA->vorige;
 
-      }
+      } // while
       if ( rest > 0 ) {
          hulpC.voegVoor( rest );
-      }
+      } // if
       rest = 0;
       temp.kopieer( C );
       C.telop( temp, hulpC );
       maakNullenTeller++;
       hulpB = hulpB->vorige;
-   }
-   kopieer ( C );
-}
+   } // while
+   kopieer( C );
+} // gg::vermenigvulig
