@@ -3,7 +3,7 @@
 
 using namespace std;
 
-// functie voor tien tot de macht k (grootte van bootjes)
+// tien tot de macht k (grootte van bootjes) berekenen
 int tienMacht( int k ) {
    int getal = 1;
    for ( int i = 0; i < k; i++ ) {
@@ -32,71 +32,79 @@ gg::gg( ) {
   aantalBoten = 0;
 } // gg::gg
 
-//destructor
+// destructor
 gg::~gg( ) {
 	verwijderen( );
 } // gg::~gg
 
-// print groot getal met juiste aantal nullen en aantal boten
+// print groot getal met juiste aantal nullen en aantal bootjes
 void gg::print( ) {
-   int bootTeller = 0;
+   int bootTeller = 0;				// aantal cijfers in bootje
    element* hulp = ingang;
-   if ( hulp == NULL ) {
+   if ( hulp == NULL ) {			// als leeg groot getal
       cout << "NULL";
    } // if
-   while ( hulp != NULL ) {
-      bootTeller = cijferTeller( hulp->info );
+   
+   // loopen door groot getal tot laatste bootje
+   while ( hulp != NULL ) {		
+      bootTeller = cijferTeller( hulp->info ); // aantal cijfers boot tellen
+      // als er nullen nodig zijn benodigde nullen naar scherm schrijven
+      // niet bij eerste boot in groot getal
       if ( bootTeller < k && hulp->vorige != NULL ) {
          for ( int i = k; i > bootTeller; i-- ) {
             cout << "0";
          } // for
       } // if
+      
+      // zorgen dat er niet extra nul naar scherm wordt geschreven
       if ( hulp->info > 0 ) {
       	cout << hulp->info << " ";
       } else {
          cout << " ";
       } // if/else
+      // naar volgende boot
       hulp = hulp->volgende;
    } // while
-   cout << " (" << aantalBoten << ")" << endl;
-} //gg::print
+   cout << " (" << aantalBoten << ")" << endl; 
+} // gg::print
 
-// voeg een bootje voor aan het grote getal.
+// voeg een bootje voor aan het grote getal
 void gg::voegVoor(int getal) {
-      element* eenVakje;
-      eenVakje = new element;
-      toevElement++;
+   element* bootje;
+   bootje = new element;
+   toevElement++;
+	
+	// als eerste bootje, ingang en uitgang aan bootje koppelen
+   if ( ingang == NULL ) {
+      uitgang = bootje;
+   } else {
+      ingang->vorige = bootje;
+   } // if/else
 
-      if ( ingang == NULL ) {
-         uitgang = eenVakje;
-      } else {
-         ingang->vorige = eenVakje;
-      } // if/else
-
-      eenVakje->vorige = NULL;
-      eenVakje->volgende = ingang;
-      eenVakje->info = getal;
-      ingang = eenVakje;
-      aantalBoten++;
+   bootje->vorige = NULL;
+   bootje->volgende = ingang;
+   bootje->info = getal;
+   ingang = bootje;
+   aantalBoten++;
 } // gg::voegVoor
 
 // voeg een bootje achter aan het grote getal
 void gg::voegAchter( int getal ) {
-      element* eenVakje;
-      eenVakje = new element;
-      toevElement++;
+   element* bootje;
+   bootje = new element;
+   toevElement++;
 
-      if ( uitgang == NULL ) {
-         ingang = eenVakje;
-      } else {
-         uitgang->volgende = eenVakje;
-      } // if/else
+   if ( uitgang == NULL ) {
+      ingang = bootje;
+   } else {
+      uitgang->volgende = bootje;
+   } // if/else
 
-      eenVakje->vorige = uitgang;
-      eenVakje->volgende = NULL;
-      eenVakje->info = getal;
-      uitgang = eenVakje;
-      aantalBoten++;
+   bootje->vorige = uitgang;
+   bootje->volgende = NULL;
+   bootje->info = getal;
+   uitgang = bootje;
+   aantalBoten++;
 }// gg::voegAchter
 
 // door de gebruiker gegeven getal inlezen en per k toevoegen aan grote getal
@@ -141,12 +149,10 @@ void gg::hevelen( ) {
    if ( verschuiving > 0 ) {
       bootVerschuiving = tienMacht( verschuiving );
    	bootDeler = tienMacht( k - verschuiving );
-
    	element* hulp = ingang;
    	while ( hulp != NULL ) {
          bootje = hulp->info;
          d = bootje / bootVerschuiving;
-         //cout << d << endl << bootje << endl << bootVerschuiving << endl << r << endl;
          if ( hulp->volgende == NULL ) {
          	hulp->info = ( r * bootDeler ) + bootje; //
          } else {
@@ -167,17 +173,11 @@ void gg::telop( gg& A, gg& B ) {
 	element* overig;
    verwijderen( );
 	while ( hulpA != NULL && hulpB != NULL ) {
-
 		C = hulpA->info + hulpB->info + hulpC;
-
 		hulpC = C / tienMacht( k );
       C = C % tienMacht( k );
-
-
 		hulpA = hulpA->vorige;
 		hulpB = hulpB->vorige;
-
-		//cout << hulpC << endl << C << endl;
 		voegVoor( C );
 	} // while
 	if ( hulpA == NULL ) {
@@ -187,12 +187,9 @@ void gg::telop( gg& A, gg& B ) {
 	} // if/else
 	while ( overig != NULL ) {
 		C = overig->info + hulpC;
-
       hulpC = C / tienMacht( k );
       C = C % tienMacht( k );
-
 		voegVoor( C );
-
 		overig = overig->vorige;
 	} // while
 	if ( hulpC > 0 ) {
@@ -269,16 +266,11 @@ void gg::vermenigvuldig( gg& A, gg& B ) {
       element* hulpA = A.uitgang;
       hulpC.maakNullen( maakNullenTeller );
       while ( hulpA != NULL ) {
-
          rekenC = (long long) hulpA->info * hulpB->info + rest;
-
          rest = rekenC / tienMacht( k );
          rekenC = rekenC % tienMacht( k );
-
-         cout << rest << endl << rekenC << endl << endl;
          hulpC.voegVoor( rekenC );
          hulpA = hulpA->vorige;
-
       } // while
       if ( rest > 0 ) {
          hulpC.voegVoor( rest );
